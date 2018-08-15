@@ -15,6 +15,7 @@ class ArticleManager extends React.Component {
     constructor(props){
         super(props);
         this.state={
+            calist:[],//文章分类
             is_add_visible:false,
             is_look_visible:false,
             data:[],
@@ -28,7 +29,8 @@ class ArticleManager extends React.Component {
         this.columns = [{
           title: '序号',
           dataIndex: 'key',
-          width:100,
+          width:90,
+          align:"center",
           sorter: (a, b) => a.name.length - b.name.length,
         }, {
           title: '标题',
@@ -40,18 +42,31 @@ class ArticleManager extends React.Component {
           dataIndex: 'a_tag',
           sorter: (a, b) => a.address.length - b.address.length,
         }, {
-            title: '类型',
+            title: '分类',
             dataIndex: 'a_classid',
+            key:"datetime",
+            sorter: (a, b) => a.address.length - b.address.length,
+        }, {
+            title: '简介',
+            dataIndex: 'a_desc',
+            key:"datetime",
+            sorter: (a, b) => a.address.length - b.address.length,
+        },{
+            title:"发布时间",
+            dataIndex:"a_datetime",
             key:"datetime",
             sorter: (a, b) => a.address.length - b.address.length,
         }, {
             title: '操作', 
             dataIndex: '', 
+            width:130,
+            align:"center",
             key: 'x', 
-            render: (record) => <span><a href="javascript:void(0);" onClick={()=>this.setData('look',record)}style={{"marginRight":"10px"}}><Icon type="file-text" /></a><a href="javascript:void(0);" onClick={()=>this.setData('edit',record)}style={{"marginRight":"10px"}}><Icon type="file-text" /></a><a onClick={()=>this.setData('del',record)} href="javascript:;"><Icon type="delete" /></a></span> }
+            render: (record) => <span><a href="javascript:void(0);" onClick={()=>this.setData('look',record)}style={{"marginRight":"10px"}}><Icon type="file-text" /></a><a href="javascript:void(0);" onClick={()=>this.setData('edit',record)}style={{"marginRight":"10px"}}><Icon type="edit" /></a><a onClick={()=>this.setData('del',record)} href="javascript:;"><Icon type="delete" /></a></span> }
         ];
     }
     componentDidMount(){
+        this.initCArticleList();
         this.initQueryList(1,"");
     }
     setData=(type,data)=>{
@@ -63,9 +78,10 @@ class ArticleManager extends React.Component {
                 modelData:type === "edit"?Object.assign({},data,{url_type:"edit"}):Object.assign({},initObj,{url_type:"add"})
             });
             let inputValObj=type === "add"?initObj:data;
+            console.log(this.domRef)
             _that.domRef.setFieldsValue({
                 a_title:inputValObj.a_title?inputValObj.a_title:"",
-                a_classid:inputValObj.a_classid?inputValObj.a_classid:"",
+                a_classid:parseInt(inputValObj.a_classid?inputValObj.a_classid:1),
                 a_content:inputValObj.a_content?inputValObj.a_content:"",
                 a_tag:inputValObj.a__tag?inputValObj.a_tag:""
             });
@@ -84,6 +100,23 @@ class ArticleManager extends React.Component {
         window.$common.httpAjax(urlStr,"POST",sendData).then((res)=>{
             if(res.flag === "success"){
                 _that.initQueryList(1,"");
+            }else{
+                message.error(res.msg);
+            }
+        }).catch((err)=>{
+            console.error(err);
+        });
+    }
+    initCArticleList=()=>{
+        var sendData={
+            userid:window.localStorage.getItem("userId"),
+        };
+        window.$common.httpAjax("classarticle/query","POST",sendData).then((res)=>{
+            if(res.flag === "success"){
+                console.log(res)
+                this.setState({
+                    calist:res.data
+                });
             }else{
                 message.error(res.msg);
             }
@@ -149,7 +182,7 @@ class ArticleManager extends React.Component {
                 onChange={this.onChange} 
                 pagination={{total:this.state.totalList,defaultCurrent:this.state.currPage,pageSize:10}}
                 />
-                <AddModelForm visible={this.state.is_add_visible} on_close={this.handleClose} ref={(dom)=>this.domRef=dom} data={this.state.modelData}></AddModelForm>
+                <AddModelForm visible={this.state.is_add_visible} cArticleList={this.state.calist} on_close={this.handleClose} ref={(dom)=>this.domRef=dom} data={this.state.modelData}></AddModelForm>
                 <LookModel visible={this.state.is_look_visible} on_close={()=>{this.setState({is_look_visible:false})}} data={this.state.modelData}></LookModel>
             </div>
         );

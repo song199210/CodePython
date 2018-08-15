@@ -18,6 +18,8 @@ const {TextArea} = Input;
 class addModel extends React.Component {
     constructor(props){
         super(props);
+        this.editor=null;
+        this.editorTxt="展开编辑器";
         this.modules = {
             toolbar: [
                 ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
@@ -51,8 +53,12 @@ class addModel extends React.Component {
             tags:[],
             content:"",
             inputVisible: false,
-            inputValue: ''
+            inputValue: '',
+            isEditor:false
         };
+    }
+    componentDidMount() {
+        this.editorTxt="展开编辑";
     }
     componentWillReceiveProps(nextProps){
         if(JSON.stringify(nextProps) !== JSON.stringify(this.props)){
@@ -107,7 +113,7 @@ class addModel extends React.Component {
                 const {url_type}=data;
                 if(url_type == "edit"){
                     urlStr="articlemanager/update";
-                    values["l_id"]=data.id;
+                    values["a_id"]=data.id;
                 }
                 console.log(values);
                 window.$common.httpAjax(urlStr,"POST",values).then((res)=>{
@@ -123,18 +129,26 @@ class addModel extends React.Component {
             }
           });
     }
+    showEditor=()=>{
+        const {isEditor}=this.state;
+        this.editorTxt=isEditor?"展开编辑器":"收起编辑器";
+        this.setState({
+            isEditor:!isEditor
+        });
+    }
     saveInputRef = input => this.input = input
     render() {
+        const {cArticleList} = this.props
         const { getFieldDecorator } = this.props.form;
         const formItemLayout = {
-            labelCol:{span:5},
-            wrapperCol: { span: 19 },
+            labelCol:{span:4},
+            wrapperCol: { span: 20 },
         };
         const formItemLayout1 = {
             labelCol:{span:2},
             wrapperCol: { span: 22 },
         };
-        const { inputVisible, inputValue,tags,content} = this.state;
+        const { inputVisible, inputValue,tags,content,isEditor} = this.state;
         return (
             <div>
                 <Modal
@@ -144,82 +158,101 @@ class addModel extends React.Component {
                 onOk={this.handleSubmit}
                 onCancel={()=>this.props.on_close(false)}
                 >
-                    <Form>
-                        <Row>
-                            <Col span="12">
-                                <FormItem
-                                    {...formItemLayout}
-                                    label="标题">
-                                    {getFieldDecorator('a_title', {
-                                        initialValue:"",
-                                        rules: [{ required: true, message: '标题不能为空!' }],
-                                    })(
-                                    <Input placeholder="请输入文章标题" />
-                                    )}
-                                </FormItem>
-                            </Col>
-                            <Col span="12">
-                                <FormItem
-                                    {...formItemLayout}
-                                    label="类型">
-                                    {getFieldDecorator('a_classid', {
-                                        initialValue:"",
-                                        rules: [{ required: true, message: '类型不能为空!' }],
-                                    })(
+                <Form>
+                    <Row>
+                        <Col span="12">
+                            <FormItem
+                                {...formItemLayout}
+                                label="标题">
+                                {getFieldDecorator('a_title', {
+                                    initialValue:"",
+                                    rules: [{ required: true, message: '标题不能为空!' }],
+                                })(
+                                <Input placeholder="请输入文章标题" />
+                                )}
+                            </FormItem>
+                        </Col>
+                        <Col span="12">
+                            <FormItem
+                                {...formItemLayout}
+                                label="类型">
+                                {getFieldDecorator('a_classid', {
+                                    initialValue:"",
+                                    rules: [{ required: true, message: '类型不能为空!' }],
+                                })(
                                     <Select placeholder="请选择文章类型">
-                                        <Option value="china">China</Option>
-                                        <Option value="use">U.S.A</Option>
+                                    {cArticleList.map((item)=>{
+                                        return <Option value={item.id}>{item.ca_title}</Option>
+                                    })}
                                     </Select>
-                                    )}
-                                </FormItem>
-                            </Col>
-                        </Row>
-                        <div style={{height:"400px"}}>
-                        <ReactQuill 
-                            theme="snow"
-                            modules={this.modules}
-                            formats={this.formats}
-                            height="100%"
-                            value={ content }
-                            onChange={(val)=>{
-                                this.setState({
-                                    content: val
-                                })
-                            }}/>
-                        </div>
-                        <FormItem
-                            {...formItemLayout1}
-                            label="标签">
-                            {tags.map((tag, index) => {
-                                const isLongTag = tag.length > 20;
-                                const tagElem = (
-                                    <Tag key={tag} closable afterClose={() => this.handleClose(tag)}>
-                                    {isLongTag ? `${tag.slice(0, 20)}...` : tag}
-                                    </Tag>
-                                );
-                                return isLongTag ? <Tooltip title={tag} key={tag}>{tagElem}</Tooltip> : tagElem;
-                            })}
-                            {inputVisible && (
-                            <Input
-                                ref={this.saveInputRef}
-                                type="text"
-                                size="small"
-                                style={{ width: 78 }}
-                                value={inputValue}
-                                onChange={this.handleInputChange}
-                                onBlur={this.handleInputConfirm}
-                                onPressEnter={this.handleInputConfirm}
-                            />
-                            )}
-                            {!inputVisible && (
-                            <Tag
-                                onClick={this.showInput}
-                                style={{ background: '#fff', borderStyle: 'dashed' }}
-                            >
-                                <Icon type="plus" /> New Tag
-                            </Tag>
-                            )}
+                                )}
+                            </FormItem>
+                        </Col>
+                    </Row>
+                    <FormItem
+                        {...formItemLayout1}
+                        label="简介">
+                        {getFieldDecorator('a_desc', {
+                            initialValue:""
+                        })(
+                        <TextArea rows={4} placeholder="请输入文章简介" />
+                        )}
                     </FormItem>
+                    <Row>
+                        <Col span="18">
+                            <FormItem
+                                {...formItemLayout1}
+                                label="标签">
+                                {tags.map((tag, index) => {
+                                    const isLongTag = tag.length > 20;
+                                    const tagElem = (
+                                        <Tag key={tag} closable afterClose={() => this.handleClose(tag)}>
+                                        {isLongTag ? `${tag.slice(0, 20)}...` : tag}
+                                        </Tag>
+                                    );
+                                    return isLongTag ? <Tooltip title={tag} key={tag}>{tagElem}</Tooltip> : tagElem;
+                                })}
+                                {inputVisible && (
+                                <Input
+                                    ref={this.saveInputRef}
+                                    type="text"
+                                    size="small"
+                                    style={{ width: 78 }}
+                                    value={inputValue}
+                                    onChange={this.handleInputChange}
+                                    onBlur={this.handleInputConfirm}
+                                    onPressEnter={this.handleInputConfirm}
+                                />
+                                )}
+                                {!inputVisible && (
+                                <Tag
+                                    onClick={this.showInput}
+                                    style={{ background: '#fff', borderStyle: 'dashed' }}
+                                >
+                                    <Icon type="plus" /> New Tag
+                                </Tag>
+                                )}
+                            </FormItem>
+                        </Col>
+                        <Col span="6" style={{height:"63px",textAlign:"right",paddingTop:"8px"}}>
+                            <Tag color="blue" onClick={this.showEditor} ref={(dom)=>this.editor=dom} children={this.editorTxt}></Tag>
+                        </Col>
+                    </Row>
+                    {isEditor?
+                        <div style={{height:"400px",borderTop:"1px solid #ccc"}}>
+                            <ReactQuill 
+                                theme="snow"
+                                modules={this.modules}
+                                formats={this.formats}
+                                height="100%"
+                                value={ content }
+                                onChange={(val)=>{
+                                    this.setState({
+                                        content: val
+                                    })
+                                }}/>
+                        </div>
+                        :<div></div>}
                 </Form>
             </Modal>
         </div>

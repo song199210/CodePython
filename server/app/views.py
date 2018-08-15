@@ -7,11 +7,14 @@ from .controller.regin.views import regin
 from .controller.linkmanager.views import linkmanager
 from .controller.codemanager.views import codemanager
 from .controller.articlemanager.views import articlemanager
+from .controller.articlemanager.class_views import classarticle
+
 app.register_blueprint(login,url_prefix="/login")
 app.register_blueprint(regin,url_prefix="/regin")
 app.register_blueprint(linkmanager,url_prefix="/linkmanager")
 app.register_blueprint(codemanager,url_prefix="/codemanager")
 app.register_blueprint(articlemanager,url_prefix="/articlemanager")
+app.register_blueprint(classarticle,url_prefix="/classarticle")
 
 @app.route("/test",methods=["GET"])
 def test():

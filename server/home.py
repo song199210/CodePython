@@ -2,7 +2,10 @@ import sys
 from tornado.wsgi import WSGIContainer
 from tornado.httpserver import HTTPServer
 from tornado.ioloop import IOLoop
-from run import manager
+from app import app
 
-http_server = HTTPServer(WSGIContainer(manager.run())) #加入容器
-IOLoop.instance().start()
+if __name__ == "__main__":
+    print("服务器启动!!!!!")
+    server = HTTPServer(WSGIContainer(app))
+    server.listen(5000)
+    IOLoop.instance().start()

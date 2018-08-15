@@ -95,13 +95,15 @@ class ArticleM(Base):
     a_content=Column(Text)  #内容
     a_classid=Column(String(60)) #分类ID
     a_tag=Column(String(100)) #标签
+    a_desc=Column(Text) #文章简介
     a_userid=Column(String(60)) #用户ID
     a_datetime=Column(DateTime) #时间
-    def __init__(self,a_title,a_content,a_classid,a_tag,a_useid):
+    def __init__(self,a_title,a_content,a_classid,a_tag,a_desc,a_useid):
         self.a_title=a_title
         self.a_content=a_content
         self.a_classid=a_classid
         self.a_tag=a_tag
+        self.a_desc=a_desc
         self.a_userid=a_useid
         self.a_datetime=datetime.datetime.now()
     def to_json(self):

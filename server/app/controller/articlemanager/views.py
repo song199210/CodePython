@@ -4,7 +4,6 @@ from sqlalchemy import or_,and_
 from sqlalchemy.exc import InvalidRequestError
 from app.conect_db import session
 from ..common import requestBody
-import json
 
 articlemanager=Blueprint("articlemanager",__name__)
 
@@ -55,6 +54,7 @@ def addArticleModel(request):
     a_title=reqJson['a_title']
     a_content=reqJson['a_content']
     a_tag=reqJson['a_tag']
+    a_desc=reqJson['a_desc']
     a_userid=reqJson['a_userid']
     a_classid=reqJson['a_classid']
     resData={
@@ -65,7 +65,7 @@ def addArticleModel(request):
         resData['msg']="用户ID不存在"
         return resData
     try:
-        articlem=ArticleM(a_title,a_content,a_classid,a_tag,a_userid)
+        articlem=ArticleM(a_title,a_content,a_classid,a_tag,a_desc,a_userid)
         session.add(articlem)
         session.commit()
         resData['flag']="success"
@@ -84,12 +84,14 @@ def updateArticle():
     if request.method == "POST":
         resJson=updateArticleModel(request)
         return jsonify(resJson)
+
 def updateArticleModel(request):
     reqJson=requestBody(request)
     a_id=reqJson['a_id']
     a_title=reqJson['a_title']
     a_content=reqJson['a_content']
     a_tag=reqJson['a_tag']
+    a_desc=reqJson['a_desc']
     a_userid=reqJson['a_userid']
     a_classid=reqJson['a_classid']
     resData={
@@ -103,12 +105,13 @@ def updateArticleModel(request):
         resData['msg']="用户ID不存在"
         return resData
     try:
-        queryData=session.query(ArticleM).filter_by(a_id).all()
+        queryData=session.query(ArticleM).filter_by(id=a_id).all()
         if len(queryData) !=0:
             queryData[0].a_title=a_title
             queryData[0].a_content=a_content
             queryData[0].a_classid=a_classid
             queryData[0].a_tag=a_tag
+            queryData[0].a_desc=a_desc
             queryData[0].a_userid=a_userid
             session.commit()
             resData['flag']="success"
