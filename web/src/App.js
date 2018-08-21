@@ -5,6 +5,7 @@ import LoginForm from "./views/Login/login";
 import ReginForm from "./views/Regin/regin";
 import EmailForm from "./views/Regin/email";
 import AdminComponent from "./views/admin/admin";
+import TestComponent from "./views/Test/test";
 window.$common=common;
 
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
       <div className="App">
         <Router>
           <Switch>
+            <Route component={TestComponent} path="/test" exact={true}/>
             <Route component={LoginForm} path="/login" exact={true}/>
             <Route component={ReginForm} path="/regin"/>
             <Route component={EmailForm} path="/email"/>
