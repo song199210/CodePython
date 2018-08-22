@@ -206,7 +206,7 @@ class AddCodePage extends React.Component{
                                     )}
                                 </FormItem>
                                 <div className="btnGroup">
-                                    <Button type="primary">运行</Button>
+                                    <Button type="primary" onClick={()=>{this.props.history.goBack()}}>返回</Button>
                                     <Button type="primary" onClick={this.handleSubmit}>保存</Button>
                                 </div>
                             </Form>

@@ -34,7 +34,7 @@ class LookModel extends React.Component {
             okButtonProps={{ hidden:true }}
             cancelButtonProps={{ disabled: true }}
             >
-            <p><span>标题:{this.state.title}</span><span style={{display:"inline-block",marginLeft:"16px"}}>时间:{this.state.datetime}</span></p>
+            <p style={{borderBottom:"1px solid #ccc",paddingBottom:"10px"}}><span>标题:{this.state.title}</span><span style={{display:"inline-block",marginLeft:"16px"}}>时间:{this.state.datetime}</span></p>
             <div dangerouslySetInnerHTML={{__html:this.state.content}}></div>
         </Modal>
         );

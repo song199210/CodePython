@@ -1,5 +1,5 @@
 import React from "react";
-import { Table,Button,message,Icon } from 'antd';
+import { Table,Button,Popconfirm,message,Icon } from 'antd';
 import AddModelForm from "./addModel";
 import SearchForm from "../../components/search/search";
 import "./searchform.scss";
@@ -42,7 +42,17 @@ class LinkManager extends React.Component {
         }, {
             title: '操作', 
             dataIndex: '', 
-            render: (record) => <span><a href="javascript:void(0);" onClick={()=>this.setData('edit',record)}style={{"marginRight":"10px"}}><Icon type="file-text" /></a><a onClick={()=>this.setData('del',record)} href="javascript:;"><Icon type="delete" /></a></span> }
+            render: (record) => {
+                return (
+                    <span>
+                        <a href="javascript:void(0);" onClick={()=>this.setData('edit',record)}style={{"marginRight":"10px"}}><Icon type="file-text" /></a>
+                        <Popconfirm title="确认删除?" onConfirm={()=>this.setData('del',record)} okText="确定" cancelText="取消">
+                            <a href="javascript:void(0);"><Icon type="delete" title="删除" /></a>
+                        </Popconfirm>
+                    </span>
+                    );
+                }
+            }
         ];
     }
     componentDidMount(){

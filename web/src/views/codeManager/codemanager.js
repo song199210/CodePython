@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Col, Row,Button,message } from 'antd';
+import { Card, Col, Row,Popconfirm,Button,message } from 'antd';
 import SearchForm from "../../components/search/search";
 
 class NormalEmailForm extends React.Component {
@@ -77,7 +77,9 @@ class NormalEmailForm extends React.Component {
                             <p>标签：{item.c_tag}</p>
                             <div className="btn_group">
                                 <Button type="primary" onClick={()=>{this.editData(item)}}>编辑</Button>
-                                <Button type="primary" onClick={()=>{this.deleteData(item)}}>删除</Button>
+                                <Popconfirm title="确认删除?" onConfirm={()=>{this.deleteData(item)}} okText="确定" cancelText="取消">
+                                    <Button type="primary">删除</Button>
+                                </Popconfirm>
                             </div>
                         </div>
                     </Card>

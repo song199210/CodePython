@@ -39,7 +39,7 @@ def queryArticleModel(request):
         queryClass=session.query(ClassArticleM).filter(ca_classid == classid).all()
         print(queryClass)
         if len(queryClass) != 0:
-            
+
         resData['data']=data
         resData['total']=totalNum
     except InvalidRequestError:
