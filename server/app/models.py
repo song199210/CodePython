@@ -92,7 +92,7 @@ class ArticleM(Base):
     __tablename__="article"
     id=Column(Integer,primary_key=True)
     a_title=Column(String(100)) #标题
-    a_content=Column(Text)  #内容
+    a_content=Column(Text(length=(2**32)-1))  #内容
     a_classid=Column(String(60)) #分类ID
     a_tag=Column(String(100)) #标签
     a_desc=Column(Text) #文章简介

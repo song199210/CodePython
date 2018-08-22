@@ -26,7 +26,7 @@ class SiderbarComponent extends React.Component {
                 >
                     <Menu.Item key="codemanager"><Icon type="code-o" />代码管理</Menu.Item>
                     <Menu.Item key="linkmanager"><Icon type="folder-add" />网址收藏</Menu.Item>
-                    <Menu.Item key="articlemanager"><Icon type="folder-add" />文章管理</Menu.Item>
+                    <Menu.Item key="articlemanager"><Icon type="file-word" />文章管理</Menu.Item>
                 </Menu>
             </div>
         );

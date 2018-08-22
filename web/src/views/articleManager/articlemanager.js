@@ -31,31 +31,27 @@ class ArticleManager extends React.Component {
           dataIndex: 'key',
           width:90,
           align:"center",
-          sorter: (a, b) => a.name.length - b.name.length,
+          key:"key"
         }, {
           title: '标题',
           dataIndex: 'a_title',
-          defaultSortOrder: 'descend',
-          sorter: (a, b) => a.age - b.age,
+          key:"a_title"
         }, {
           title: '标签',
           dataIndex: 'a_tag',
-          sorter: (a, b) => a.address.length - b.address.length,
+          key:"a_tag"
         }, {
             title: '分类',
             dataIndex: 'a_classid',
-            key:"datetime",
-            sorter: (a, b) => a.address.length - b.address.length,
+            key:"a_classid",
         }, {
             title: '简介',
             dataIndex: 'a_desc',
-            key:"datetime",
-            sorter: (a, b) => a.address.length - b.address.length,
+            key:"a_desc",
         },{
             title:"发布时间",
             dataIndex:"a_datetime",
             key:"datetime",
-            sorter: (a, b) => a.address.length - b.address.length,
         }, {
             title: '操作', 
             dataIndex: '', 

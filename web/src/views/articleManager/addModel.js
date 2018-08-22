@@ -1,6 +1,6 @@
 import React from "react";
 import ReactQuill, { Quill } from 'react-quill';
-import { ImageDrop } from 'quill-image-drop-module';
+import { ImageDrop } from './ImageDrop.js';
 import 'react-quill/dist/quill.snow.css';
 import {
     Modal,Form, Select, Input, 
@@ -34,7 +34,7 @@ class addModel extends React.Component {
                 [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
                 [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
               
-                [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+                [{ 'color': [] }, { 'background': [] },'image'],          // dropdown with defaults from theme
                 [{ 'font': [] }],
                 [{ 'align': [] }],
               

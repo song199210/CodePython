@@ -34,6 +34,12 @@ def queryArticleModel(request):
         data=[]
         for item in queryData:
             data.append(item.to_json())
+        print("data~~~~~~~~~~~~~~")
+        classid=data[0]['a_classid']
+        queryClass=session.query(ClassArticleM).filter(ca_classid == classid).all()
+        print(queryClass)
+        if len(queryClass) != 0:
+            
         resData['data']=data
         resData['total']=totalNum
     except InvalidRequestError:

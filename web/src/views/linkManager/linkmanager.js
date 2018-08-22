@@ -27,26 +27,21 @@ class LinkManager extends React.Component {
         this.columns = [{
           title: '序号',
           dataIndex: 'key',
-          width:100,
-          sorter: (a, b) => a.name.length - b.name.length,
+          width:100
         }, {
           title: '标题',
           dataIndex: 'l_title',
-          defaultSortOrder: 'descend',
-          sorter: (a, b) => a.age - b.age,
+          defaultSortOrder: 'descend'
         }, {
           title: '标签',
-          dataIndex: 'l_tag',
-          sorter: (a, b) => a.address.length - b.address.length,
+          dataIndex: 'l_tag'
         }, {
             title: '收藏时间',
             dataIndex: 'l_datetime',
-            key:"datetime",
-            sorter: (a, b) => a.address.length - b.address.length,
+            key:"datetime"
         }, {
             title: '操作', 
             dataIndex: '', 
-            key: 'x', 
             render: (record) => <span><a href="javascript:void(0);" onClick={()=>this.setData('edit',record)}style={{"marginRight":"10px"}}><Icon type="file-text" /></a><a onClick={()=>this.setData('del',record)} href="javascript:;"><Icon type="delete" /></a></span> }
         ];
     }
