@@ -27,19 +27,17 @@ def queryArticleModel(request):
         resData['msg']="用户ID不存在"
         return resData
     try:
-        queryData=session.query(ArticleM).filter(or_(or_(ArticleM.a_title.like('%'+ca_keystr+'%'),ArticleM.a_tag.like('%'+ca_keystr+'%')),ArticleM.a_classid==ca_classid)).limit(pagesize).offset((pageno-1)*pagesize).all()
+        queryData=session.query(ArticleM,ClassArticleM).outerjoin(ClassArticleM,ClassArticleM.id==ArticleM.a_classid).filter(or_(or_(ArticleM.a_title.like('%'+ca_keystr+'%'),ArticleM.a_tag.like('%'+ca_keystr+'%')),ArticleM.a_classid==ca_classid)).limit(pagesize).offset((pageno-1)*pagesize).all()
         totalNum=session.query(ArticleM).filter(or_(or_(ArticleM.a_title.like('%'+ca_keystr+'%'),ArticleM.a_tag.like('%'+ca_keystr+'%')),ArticleM.a_classid==ca_classid)).count()
         resData['flag']="success"
         resData['msg']="数据查询成功"
         data=[]
         for item in queryData:
-            data.append(item.to_json())
-        print("data~~~~~~~~~~~~~~")
-        classid=data[0]['a_classid']
-        queryClass=session.query(ClassArticleM).filter(ca_classid == classid).all()
-        print(queryClass)
-        if len(queryClass) != 0:
-
+            obj={}
+            if len(item) != 0:
+                for cItem in item:
+                    obj.update(cItem.to_json())
+            data.append(obj)
         resData['data']=data
         resData['total']=totalNum
     except InvalidRequestError:

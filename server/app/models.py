@@ -129,7 +129,7 @@ class ClassArticleM(Base):  #文章分类
         return '<ClassArticleM %r>' %self.__tablename__
     def to_json(self):
         dict=self.__dict__
-        dict['ca_datetime']=dict['ca_datetime'].strftime('%Y-%h-%d %H:%M:%S')
+        #dict['ca_datetime']=dict['ca_datetime'].strftime('%Y-%h-%d %H:%M:%S')
         if "_sa_instance_state" in dict:
             del dict['_sa_instance_state']
         return dict

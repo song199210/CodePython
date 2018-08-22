@@ -42,7 +42,8 @@ class ArticleManager extends React.Component {
           key:"a_tag"
         }, {
             title: '分类',
-            dataIndex: 'a_classid',
+            dataIndex: 'ca_title',
+            width:100,
             key:"a_classid",
         }, {
             title: '简介',
