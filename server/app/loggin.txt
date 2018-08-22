@@ -7355,3 +7355,52 @@ FROM (SELECT article.id AS article_id, article.a_title AS article_a_title, artic
 FROM article 
 WHERE article.a_title LIKE %(a_title_1)s OR article.a_tag LIKE %(a_tag_1)s OR article.a_classid = %(a_classid_1)s) AS anon_1
 2018-08-17 09:19:23,026 - sqlalchemy.engine.base.Engine - INFO - {'a_classid_1': '', 'a_title_1': '%%', 'a_tag_1': '%%'}
+2018-08-22 09:11:06,250 - flask_cors.core - WARNING - Unknown option passed to Flask-CORS: support_credentials
+2018-08-22 09:11:06,299 - flask_cors.core - WARNING - Unknown option passed to Flask-CORS: support_credentials
+2018-08-22 09:11:06,476 - sqlalchemy.engine.base.Engine - INFO - SHOW VARIABLES LIKE 'sql_mode'
+2018-08-22 09:11:06,477 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-22 09:11:06,534 - sqlalchemy.engine.base.Engine - INFO - SELECT DATABASE()
+2018-08-22 09:11:06,535 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-22 09:11:06,539 - sqlalchemy.engine.base.Engine - INFO - show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2018-08-22 09:11:06,540 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-22 09:11:06,548 - sqlalchemy.engine.base.Engine - INFO - SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2018-08-22 09:11:06,548 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-22 09:11:06,552 - sqlalchemy.engine.base.Engine - INFO - SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2018-08-22 09:11:06,552 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-22 09:11:06,553 - sqlalchemy.engine.base.Engine - INFO - SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2018-08-22 09:11:06,553 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-22 09:11:06,555 - sqlalchemy.engine.base.Engine - INFO - DESCRIBE `codem`
+2018-08-22 09:11:06,556 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-22 09:11:06,592 - sqlalchemy.engine.base.Engine - INFO - DESCRIBE `user`
+2018-08-22 09:11:06,593 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-22 09:11:06,597 - sqlalchemy.engine.base.Engine - INFO - DESCRIBE `clink`
+2018-08-22 09:11:06,597 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-22 09:11:06,602 - sqlalchemy.engine.base.Engine - INFO - DESCRIBE `classarticle`
+2018-08-22 09:11:06,602 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-22 09:11:06,606 - sqlalchemy.engine.base.Engine - INFO - DESCRIBE `article`
+2018-08-22 09:11:06,606 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-22 09:34:10,376 - sqlalchemy.engine.base.Engine - INFO - BEGIN (implicit)
+2018-08-22 09:34:10,378 - sqlalchemy.engine.base.Engine - INFO - SELECT user.id AS user_id, user.uname AS user_uname, user.pwd AS user_pwd, user.email AS user_email, user.userid AS user_userid, user.datetime AS user_datetime, user.active AS user_active 
+FROM user 
+WHERE user.uname = %(uname_1)s
+2018-08-22 09:34:10,379 - sqlalchemy.engine.base.Engine - INFO - {'uname_1': 'admin'}
+2018-08-22 09:34:18,605 - sqlalchemy.engine.base.Engine - INFO - SELECT user.id AS user_id, user.uname AS user_uname, user.pwd AS user_pwd, user.email AS user_email, user.userid AS user_userid, user.datetime AS user_datetime, user.active AS user_active 
+FROM user 
+WHERE user.uname = %(uname_1)s
+2018-08-22 09:34:18,605 - sqlalchemy.engine.base.Engine - INFO - {'uname_1': 'admin'}
+2018-08-22 09:34:21,655 - sqlalchemy.engine.base.Engine - INFO - SELECT user.id AS user_id, user.uname AS user_uname, user.pwd AS user_pwd, user.email AS user_email, user.userid AS user_userid, user.datetime AS user_datetime, user.active AS user_active 
+FROM user 
+WHERE user.uname = %(uname_1)s
+2018-08-22 09:34:21,655 - sqlalchemy.engine.base.Engine - INFO - {'uname_1': 'admin'}
+2018-08-22 09:34:45,798 - sqlalchemy.engine.base.Engine - INFO - SELECT user.id AS user_id, user.uname AS user_uname, user.pwd AS user_pwd, user.email AS user_email, user.userid AS user_userid, user.datetime AS user_datetime, user.active AS user_active 
+FROM user 
+WHERE user.uname = %(uname_1)s
+2018-08-22 09:34:45,798 - sqlalchemy.engine.base.Engine - INFO - {'uname_1': 'admin'}
+2018-08-22 09:34:48,130 - sqlalchemy.engine.base.Engine - INFO - SELECT user.id AS user_id, user.uname AS user_uname, user.pwd AS user_pwd, user.email AS user_email, user.userid AS user_userid, user.datetime AS user_datetime, user.active AS user_active 
+FROM user 
+WHERE user.uname = %(uname_1)s
+2018-08-22 09:34:48,130 - sqlalchemy.engine.base.Engine - INFO - {'uname_1': 'admin'}
+2018-08-22 09:34:48,181 - sqlalchemy.engine.base.Engine - INFO - SELECT codem.id AS codem_id, codem.c_title AS codem_c_title, codem.c_tag AS codem_c_tag, codem.c_desc AS codem_c_desc, codem.c_datetime AS codem_c_datetime, codem.c_userid AS codem_c_userid, codem.c_code AS codem_c_code, codem.c_code_type AS codem_c_code_type, codem.c_code_theme AS codem_c_code_theme, codem.c_code_fsize AS codem_c_code_fsize 
+FROM codem 
+WHERE codem.c_title LIKE %(c_title_1)s OR codem.c_tag LIKE %(c_tag_1)s OR codem.c_desc LIKE %(c_desc_1)s
+2018-08-22 09:34:48,182 - sqlalchemy.engine.base.Engine - INFO - {'c_title_1': '%%', 'c_desc_1': '%%s', 'c_tag_1': '%%'}
