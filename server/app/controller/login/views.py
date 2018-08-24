@@ -2,7 +2,6 @@ from flask import Flask,Blueprint,request,make_response,jsonify
 from app.models import User
 from app.conect_db import session
 from sqlalchemy.exc import InvalidRequestError
-from app import db
 #引入公共文件common
 from ..common import requestBody
 
