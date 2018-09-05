@@ -12665,3 +12665,145 @@ WHERE clink.l_desc LIKE %(l_desc_1)s OR clink.l_tag LIKE %(l_tag_1)s OR clink.l_
 FROM codem 
 WHERE codem.c_title LIKE %(c_title_1)s OR codem.c_tag LIKE %(c_tag_1)s OR codem.c_desc LIKE %(c_desc_1)s
 2018-08-24 16:53:06,101 - sqlalchemy.engine.base.Engine - INFO - {'c_tag_1': '%%', 'c_desc_1': '%%s', 'c_title_1': '%%'}
+2018-08-29 17:44:13,730 - flask_cors.core - WARNING - Unknown option passed to Flask-CORS: support_credentials
+2018-08-29 17:44:13,837 - flask_cors.core - WARNING - Unknown option passed to Flask-CORS: support_credentials
+2018-08-29 17:44:14,345 - sqlalchemy.engine.base.Engine - INFO - SHOW VARIABLES LIKE 'sql_mode'
+2018-08-29 17:44:14,345 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-29 17:44:14,372 - sqlalchemy.engine.base.Engine - INFO - SELECT DATABASE()
+2018-08-29 17:44:14,372 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-29 17:44:14,375 - sqlalchemy.engine.base.Engine - INFO - show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2018-08-29 17:44:14,375 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-29 17:44:14,402 - sqlalchemy.engine.base.Engine - INFO - SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2018-08-29 17:44:14,402 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-29 17:44:14,405 - sqlalchemy.engine.base.Engine - INFO - SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2018-08-29 17:44:14,405 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-29 17:44:14,406 - sqlalchemy.engine.base.Engine - INFO - SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2018-08-29 17:44:14,406 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-29 17:44:14,407 - sqlalchemy.engine.base.Engine - INFO - DESCRIBE `article`
+2018-08-29 17:44:14,407 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-29 17:44:14,434 - sqlalchemy.engine.base.Engine - INFO - DESCRIBE `classarticle`
+2018-08-29 17:44:14,434 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-29 17:44:14,436 - sqlalchemy.engine.base.Engine - INFO - DESCRIBE `user`
+2018-08-29 17:44:14,437 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-29 17:44:14,439 - sqlalchemy.engine.base.Engine - INFO - DESCRIBE `codem`
+2018-08-29 17:44:14,439 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-29 17:44:14,440 - sqlalchemy.engine.base.Engine - INFO - DESCRIBE `clink`
+2018-08-29 17:44:14,441 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-29 17:45:10,287 - sqlalchemy.engine.base.Engine - INFO - BEGIN (implicit)
+2018-08-29 17:45:10,289 - sqlalchemy.engine.base.Engine - INFO - SELECT user.id AS user_id, user.uname AS user_uname, user.pwd AS user_pwd, user.email AS user_email, user.userid AS user_userid, user.datetime AS user_datetime, user.active AS user_active 
+FROM user 
+WHERE user.uname = %(uname_1)s
+2018-08-29 17:45:10,289 - sqlalchemy.engine.base.Engine - INFO - {'uname_1': 'admin'}
+2018-08-29 17:45:10,383 - sqlalchemy.engine.base.Engine - INFO - SELECT codem.id AS codem_id, codem.c_title AS codem_c_title, codem.c_tag AS codem_c_tag, codem.c_desc AS codem_c_desc, codem.c_datetime AS codem_c_datetime, codem.c_userid AS codem_c_userid, codem.c_code AS codem_c_code, codem.c_code_type AS codem_c_code_type, codem.c_code_theme AS codem_c_code_theme, codem.c_code_fsize AS codem_c_code_fsize 
+FROM codem 
+WHERE codem.c_title LIKE %(c_title_1)s OR codem.c_tag LIKE %(c_tag_1)s OR codem.c_desc LIKE %(c_desc_1)s
+2018-08-29 17:45:10,383 - sqlalchemy.engine.base.Engine - INFO - {'c_desc_1': '%%s', 'c_tag_1': '%%', 'c_title_1': '%%'}
+2018-08-29 17:45:12,047 - sqlalchemy.engine.base.Engine - INFO - SELECT clink.id AS clink_id, clink.l_title AS clink_l_title, clink.l_url AS clink_l_url, clink.l_tag AS clink_l_tag, clink.l_desc AS clink_l_desc, clink.l_rate AS clink_l_rate, clink.l_userid AS clink_l_userid, clink.l_datetime AS clink_l_datetime 
+FROM clink 
+WHERE clink.l_desc LIKE %(l_desc_1)s OR clink.l_tag LIKE %(l_tag_1)s OR clink.l_title LIKE %(l_title_1)s 
+ LIMIT %(param_1)s, %(param_2)s
+2018-08-29 17:45:12,047 - sqlalchemy.engine.base.Engine - INFO - {'l_title_1': '%%', 'l_tag_1': '%%', 'param_1': 0, 'l_desc_1': '%%', 'param_2': 10}
+2018-08-29 17:45:12,063 - sqlalchemy.engine.base.Engine - INFO - SELECT count(*) AS count_1 
+FROM (SELECT clink.id AS clink_id, clink.l_title AS clink_l_title, clink.l_url AS clink_l_url, clink.l_tag AS clink_l_tag, clink.l_desc AS clink_l_desc, clink.l_rate AS clink_l_rate, clink.l_userid AS clink_l_userid, clink.l_datetime AS clink_l_datetime 
+FROM clink 
+WHERE clink.l_desc LIKE %(l_desc_1)s OR clink.l_tag LIKE %(l_tag_1)s OR clink.l_title LIKE %(l_title_1)s) AS anon_1
+2018-08-29 17:45:12,063 - sqlalchemy.engine.base.Engine - INFO - {'l_title_1': '%%', 'l_tag_1': '%%', 'l_desc_1': '%%'}
+2018-08-29 17:46:06,797 - sqlalchemy.engine.base.Engine - INFO - INSERT INTO clink (l_title, l_url, l_tag, l_desc, l_rate, l_userid, l_datetime) VALUES (%(l_title)s, %(l_url)s, %(l_tag)s, %(l_desc)s, %(l_rate)s, %(l_userid)s, %(l_datetime)s)
+2018-08-29 17:46:06,797 - sqlalchemy.engine.base.Engine - INFO - {'l_datetime': datetime.datetime(2018, 8, 29, 17, 46, 6, 796711), 'l_desc': '本期我来给大家推荐的书是《高性能JavaScript》,在这本书中我们能够了解 javascript 开发过程中的性能瓶颈,如何提升各方面的性能，包括代码的加载、运行、DOM交互、页面生存周期等。', 'l_rate': 5, 'l_userid': '3ceea366-8b2e-11e8-8770-6045cb8385ec', 'l_tag': '高效javascript,javascript,性能优化', 'l_title': '精读《高效 javascript》', 'l_url': 'https://juejin.im/post/5b7e1f81f265da436a075db4?utm_source=gold_browser_extension'}
+2018-08-29 17:46:06,822 - sqlalchemy.engine.base.Engine - INFO - COMMIT
+2018-08-29 17:46:06,849 - sqlalchemy.engine.base.Engine - INFO - BEGIN (implicit)
+2018-08-29 17:46:06,849 - sqlalchemy.engine.base.Engine - INFO - SELECT clink.id AS clink_id, clink.l_title AS clink_l_title, clink.l_url AS clink_l_url, clink.l_tag AS clink_l_tag, clink.l_desc AS clink_l_desc, clink.l_rate AS clink_l_rate, clink.l_userid AS clink_l_userid, clink.l_datetime AS clink_l_datetime 
+FROM clink 
+WHERE clink.l_desc LIKE %(l_desc_1)s OR clink.l_tag LIKE %(l_tag_1)s OR clink.l_title LIKE %(l_title_1)s 
+ LIMIT %(param_1)s, %(param_2)s
+2018-08-29 17:46:06,850 - sqlalchemy.engine.base.Engine - INFO - {'l_title_1': '%%', 'l_tag_1': '%%', 'param_1': 0, 'l_desc_1': '%%', 'param_2': 10}
+2018-08-29 17:46:06,854 - sqlalchemy.engine.base.Engine - INFO - SELECT count(*) AS count_1 
+FROM (SELECT clink.id AS clink_id, clink.l_title AS clink_l_title, clink.l_url AS clink_l_url, clink.l_tag AS clink_l_tag, clink.l_desc AS clink_l_desc, clink.l_rate AS clink_l_rate, clink.l_userid AS clink_l_userid, clink.l_datetime AS clink_l_datetime 
+FROM clink 
+WHERE clink.l_desc LIKE %(l_desc_1)s OR clink.l_tag LIKE %(l_tag_1)s OR clink.l_title LIKE %(l_title_1)s) AS anon_1
+2018-08-29 17:46:06,854 - sqlalchemy.engine.base.Engine - INFO - {'l_title_1': '%%', 'l_tag_1': '%%', 'l_desc_1': '%%'}
+2018-08-30 10:31:10,812 - sqlalchemy.engine.base.Engine - INFO - SELECT user.id AS user_id, user.uname AS user_uname, user.pwd AS user_pwd, user.email AS user_email, user.userid AS user_userid, user.datetime AS user_datetime, user.active AS user_active 
+FROM user 
+WHERE user.uname = %(uname_1)s
+2018-08-30 10:31:10,830 - sqlalchemy.engine.base.Engine - INFO - {'uname_1': 'admin'}
+2018-08-30 10:31:12,619 - sqlalchemy.engine.base.Engine - INFO - BEGIN (implicit)
+2018-08-30 10:31:12,620 - sqlalchemy.engine.base.Engine - INFO - SELECT user.id AS user_id, user.uname AS user_uname, user.pwd AS user_pwd, user.email AS user_email, user.userid AS user_userid, user.datetime AS user_datetime, user.active AS user_active 
+FROM user 
+WHERE user.uname = %(uname_1)s
+2018-08-30 10:31:12,620 - sqlalchemy.engine.base.Engine - INFO - {'uname_1': 'admin'}
+2018-08-30 10:31:12,733 - sqlalchemy.engine.base.Engine - INFO - SELECT codem.id AS codem_id, codem.c_title AS codem_c_title, codem.c_tag AS codem_c_tag, codem.c_desc AS codem_c_desc, codem.c_datetime AS codem_c_datetime, codem.c_userid AS codem_c_userid, codem.c_code AS codem_c_code, codem.c_code_type AS codem_c_code_type, codem.c_code_theme AS codem_c_code_theme, codem.c_code_fsize AS codem_c_code_fsize 
+FROM codem 
+WHERE codem.c_title LIKE %(c_title_1)s OR codem.c_tag LIKE %(c_tag_1)s OR codem.c_desc LIKE %(c_desc_1)s
+2018-08-30 10:31:12,733 - sqlalchemy.engine.base.Engine - INFO - {'c_desc_1': '%%s', 'c_tag_1': '%%', 'c_title_1': '%%'}
+2018-08-30 10:31:16,463 - sqlalchemy.engine.base.Engine - INFO - SELECT clink.id AS clink_id, clink.l_title AS clink_l_title, clink.l_url AS clink_l_url, clink.l_tag AS clink_l_tag, clink.l_desc AS clink_l_desc, clink.l_rate AS clink_l_rate, clink.l_userid AS clink_l_userid, clink.l_datetime AS clink_l_datetime 
+FROM clink 
+WHERE clink.l_desc LIKE %(l_desc_1)s OR clink.l_tag LIKE %(l_tag_1)s OR clink.l_title LIKE %(l_title_1)s 
+ LIMIT %(param_1)s, %(param_2)s
+2018-08-30 10:31:16,463 - sqlalchemy.engine.base.Engine - INFO - {'l_title_1': '%%', 'l_tag_1': '%%', 'l_desc_1': '%%', 'param_1': 0, 'param_2': 10}
+2018-08-30 10:31:16,471 - sqlalchemy.engine.base.Engine - INFO - SELECT count(*) AS count_1 
+FROM (SELECT clink.id AS clink_id, clink.l_title AS clink_l_title, clink.l_url AS clink_l_url, clink.l_tag AS clink_l_tag, clink.l_desc AS clink_l_desc, clink.l_rate AS clink_l_rate, clink.l_userid AS clink_l_userid, clink.l_datetime AS clink_l_datetime 
+FROM clink 
+WHERE clink.l_desc LIKE %(l_desc_1)s OR clink.l_tag LIKE %(l_tag_1)s OR clink.l_title LIKE %(l_title_1)s) AS anon_1
+2018-08-30 10:31:16,471 - sqlalchemy.engine.base.Engine - INFO - {'l_title_1': '%%', 'l_tag_1': '%%', 'l_desc_1': '%%'}
+2018-08-30 10:32:15,801 - sqlalchemy.engine.base.Engine - INFO - INSERT INTO clink (l_title, l_url, l_tag, l_desc, l_rate, l_userid, l_datetime) VALUES (%(l_title)s, %(l_url)s, %(l_tag)s, %(l_desc)s, %(l_rate)s, %(l_userid)s, %(l_datetime)s)
+2018-08-30 10:32:15,801 - sqlalchemy.engine.base.Engine - INFO - {'l_datetime': datetime.datetime(2018, 8, 30, 10, 32, 15, 782339), 'l_desc': '来自@京东用户体验设计部的案例教程', 'l_rate': 5, 'l_userid': '3ceea366-8b2e-11e8-8770-6045cb8385ec', 'l_tag': '教程,技术文章,体验设计', 'l_title': '京东用户体验设计部', 'l_url': 'https://aotu.io/index.html'}
+2018-08-30 10:32:15,875 - sqlalchemy.engine.base.Engine - INFO - COMMIT
+2018-08-30 10:32:15,929 - sqlalchemy.engine.base.Engine - INFO - BEGIN (implicit)
+2018-08-30 10:32:15,929 - sqlalchemy.engine.base.Engine - INFO - SELECT clink.id AS clink_id, clink.l_title AS clink_l_title, clink.l_url AS clink_l_url, clink.l_tag AS clink_l_tag, clink.l_desc AS clink_l_desc, clink.l_rate AS clink_l_rate, clink.l_userid AS clink_l_userid, clink.l_datetime AS clink_l_datetime 
+FROM clink 
+WHERE clink.l_desc LIKE %(l_desc_1)s OR clink.l_tag LIKE %(l_tag_1)s OR clink.l_title LIKE %(l_title_1)s 
+ LIMIT %(param_1)s, %(param_2)s
+2018-08-30 10:32:15,930 - sqlalchemy.engine.base.Engine - INFO - {'l_title_1': '%%', 'param_1': 0, 'l_tag_1': '%%', 'param_2': 10, 'l_desc_1': '%%'}
+2018-08-30 10:32:15,933 - sqlalchemy.engine.base.Engine - INFO - SELECT count(*) AS count_1 
+FROM (SELECT clink.id AS clink_id, clink.l_title AS clink_l_title, clink.l_url AS clink_l_url, clink.l_tag AS clink_l_tag, clink.l_desc AS clink_l_desc, clink.l_rate AS clink_l_rate, clink.l_userid AS clink_l_userid, clink.l_datetime AS clink_l_datetime 
+FROM clink 
+WHERE clink.l_desc LIKE %(l_desc_1)s OR clink.l_tag LIKE %(l_tag_1)s OR clink.l_title LIKE %(l_title_1)s) AS anon_1
+2018-08-30 10:32:15,934 - sqlalchemy.engine.base.Engine - INFO - {'l_title_1': '%%', 'l_tag_1': '%%', 'l_desc_1': '%%'}
+2018-08-30 18:59:08,053 - flask_cors.core - WARNING - Unknown option passed to Flask-CORS: support_credentials
+2018-08-30 18:59:08,066 - flask_cors.core - WARNING - Unknown option passed to Flask-CORS: support_credentials
+2018-08-30 18:59:08,625 - sqlalchemy.engine.base.Engine - INFO - SHOW VARIABLES LIKE 'sql_mode'
+2018-08-30 18:59:08,625 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-30 18:59:08,764 - sqlalchemy.engine.base.Engine - INFO - SELECT DATABASE()
+2018-08-30 18:59:08,764 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-30 18:59:08,767 - sqlalchemy.engine.base.Engine - INFO - show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2018-08-30 18:59:08,767 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-30 18:59:08,801 - sqlalchemy.engine.base.Engine - INFO - SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2018-08-30 18:59:08,801 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-30 18:59:08,803 - sqlalchemy.engine.base.Engine - INFO - SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2018-08-30 18:59:08,803 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-30 18:59:08,804 - sqlalchemy.engine.base.Engine - INFO - SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2018-08-30 18:59:08,804 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-30 18:59:08,805 - sqlalchemy.engine.base.Engine - INFO - DESCRIBE `codem`
+2018-08-30 18:59:08,805 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-30 18:59:08,879 - sqlalchemy.engine.base.Engine - INFO - DESCRIBE `user`
+2018-08-30 18:59:08,879 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-30 18:59:08,898 - sqlalchemy.engine.base.Engine - INFO - DESCRIBE `clink`
+2018-08-30 18:59:08,899 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-30 18:59:08,904 - sqlalchemy.engine.base.Engine - INFO - DESCRIBE `classarticle`
+2018-08-30 18:59:08,904 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-30 18:59:08,911 - sqlalchemy.engine.base.Engine - INFO - DESCRIBE `article`
+2018-08-30 18:59:08,911 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-30 19:01:00,351 - flask_cors.core - WARNING - Unknown option passed to Flask-CORS: support_credentials
+2018-08-30 19:01:00,351 - flask_cors.core - WARNING - Unknown option passed to Flask-CORS: support_credentials
+2018-08-30 19:01:00,523 - sqlalchemy.engine.base.Engine - INFO - SHOW VARIABLES LIKE 'sql_mode'
+2018-08-30 19:01:00,523 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-30 19:01:00,538 - sqlalchemy.engine.base.Engine - INFO - SELECT DATABASE()
+2018-08-30 19:01:00,538 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-30 19:01:00,539 - sqlalchemy.engine.base.Engine - INFO - show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2018-08-30 19:01:00,539 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-30 19:01:00,540 - sqlalchemy.engine.base.Engine - INFO - SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2018-08-30 19:01:00,540 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-30 19:01:00,541 - sqlalchemy.engine.base.Engine - INFO - SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2018-08-30 19:01:00,541 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-30 19:01:00,541 - sqlalchemy.engine.base.Engine - INFO - SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2018-08-30 19:01:00,541 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-30 19:01:00,542 - sqlalchemy.engine.base.Engine - INFO - DESCRIBE `user`
+2018-08-30 19:01:00,542 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-30 19:01:00,580 - sqlalchemy.engine.base.Engine - INFO - DESCRIBE `classarticle`
+2018-08-30 19:01:00,580 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-30 19:01:00,594 - sqlalchemy.engine.base.Engine - INFO - DESCRIBE `article`
+2018-08-30 19:01:00,594 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-30 19:01:00,596 - sqlalchemy.engine.base.Engine - INFO - DESCRIBE `clink`
+2018-08-30 19:01:00,596 - sqlalchemy.engine.base.Engine - INFO - {}
+2018-08-30 19:01:00,598 - sqlalchemy.engine.base.Engine - INFO - DESCRIBE `codem`
+2018-08-30 19:01:00,598 - sqlalchemy.engine.base.Engine - INFO - {}
